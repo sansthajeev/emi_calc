@@ -127,7 +127,7 @@ const EmiForm = () => {
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Loan Tenure</label>
+              <label className="block text-gray-700 mb-2">Loan Tenure (Years)</label>
               <input
                 type="number"
                 id="tenure"
@@ -242,11 +242,12 @@ const EmiForm = () => {
             <p className="text-green-900">No Records to Display</p>
           </>
         )}
+         
         {/* Pagination controls */}
-        <div className="mt-4 flex justify-between bg-slate-400 mx-auto">
+        <div className="mt-4 flex justify-between mx-auto">
           <button
             onClick={handlePreviousPage}
-            className="px-4 py-2 rounded-md hover:bg-gray-300 text-gray-950 disabled:opacity-50"
+            className="px-4 py-2 rounded-md hover:bg-gray-300 text-gray-950 "
             disabled={currentPage === 1}
           >
             Previous
@@ -256,13 +257,15 @@ const EmiForm = () => {
           </p>
           <button
             onClick={handleNextPage}
-            className="px-4 py-2 rounded-md hover:bg-gray-300 text-gray-950 disabled:opacity-50"
+            className="text-bold px-4 py-2 rounded-md  hover:bg-gray-300 text-gray-950"
             disabled={currentPage === totalPages}
           >
             Next
           </button>
-          {/* Rows per page selection */}
-          <div className="mb-4">
+         
+        </div>
+        {/* Rows per page selection */}
+        <div className="mb-4">
             <label htmlFor="rowsPerPage" className="block text-sm font-medium">
               Rows per page
             </label>
@@ -270,7 +273,7 @@ const EmiForm = () => {
               id="rowsPerPage"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(Number(e.target.value))}
-              className="mt-1 block w-full border-green-900 rounded-md shadow-sm"
+              className="mt-1 block w-full text-green-900 border-green-900 rounded-md shadow-sm"
             >
               <option value={10}>10</option>
               <option value={50}>50</option>
@@ -278,7 +281,6 @@ const EmiForm = () => {
               <option value={200}>200</option>
             </select>
           </div>
-        </div>
       </div>
     </div>
   );
