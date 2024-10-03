@@ -1,13 +1,12 @@
 "use client";
 import { AmortizationRow, calculateAmortization } from "@/lib/calculateEmi";
-
 import React, { useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-const EmiForm = () => {
+const page = () => {
   const [principal, setPrincipal] = useState<number | null>(null);
   const [rate, setRate] = useState<number | null>(null);
   const [tenure, setTenure] = useState<number | null>(null);
@@ -180,10 +179,10 @@ const EmiForm = () => {
             </p>
           </div>
           <div className="text-center mb-4">
-            <div className="mt-4">
-              <h3 className="text-xl font-bold mb-2">EMI Breakdown</h3>
-              <Pie data={pieData} />
-            </div>
+          <div className="mt-4">
+            <h3 className="text-xl font-bold mb-2">EMI Breakdown</h3>
+            <Pie data={pieData} />
+          </div>
           </div>
         </div>
       </div>
@@ -193,41 +192,34 @@ const EmiForm = () => {
         <span className="font-bold text-blue-700">Interest</span> components
       </h2>
       <div className="overflow-x-auto">
-        {emi !== null ? (
-          <table className="min-w-full bg-white">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 bg-blue-700 items-center text-white">
-                  Period
-                </th>
-                <th className="py-2 px-4 bg-blue-700 items-center text-white">
-                  Principal
-                </th>
-                <th className="py-2 px-4 bg-blue-700 text-white items-center">
-                  Interest
-                </th>
-                <th className="py-2 px-4 bg-blue-700 text-white items-center">
-                  Balance
-                </th>
+       
+       {
+        emi !== null ? 
+       (
+        
+        <table className="min-w-full bg-white">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 bg-blue-700 items-center text-white">Period</th>
+              <th className="py-2 px-4 bg-blue-700 items-center text-white">Principal</th>
+              <th className="py-2 px-4 bg-blue-700 text-white items-center">Interest</th>
+              <th className="py-2 px-4 bg-blue-700 text-white items-center">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {displayedSchedule?.map((row, index) => (
+              <tr
+                key={row.month}
+                className={index % 2 === 0 ? "bg-gray-100" : ""}
+              >
+                <td>{row.month}</td>
+                <td>{row.principalPayment.toFixed(2)}</td>
+                <td>{row.interestPayment.toFixed(2)}</td>
+                <td>{row.remainingBalance.toFixed(2)}</td>
               </tr>
-            </thead>
-            <tbody>
-              {displayedSchedule?.map((row, index) => (
-                <tr
-                  key={row.month}
-                  className={index % 2 === 0 ? "bg-gray-100" : ""}
-                >
-                  <td>{row.month}</td>
-                  <td>{row.principalPayment.toFixed(2)}</td>
-                  <td>{row.interestPayment.toFixed(2)}</td>
-                  <td>{row.remainingBalance.toFixed(2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <>No Records to Display</>
-        )}
+            ))}
+          </tbody>
+        </table>):(<>No Records to Display</>)}
         {/* Pagination controls */}
         <div className="mt-4 flex justify-between">
           <button
@@ -249,25 +241,28 @@ const EmiForm = () => {
           </button>
           {/* Rows per page selection */}
           <div className="mb-4">
-            <label htmlFor="rowsPerPage" className="block text-sm font-medium">
-              Rows per page
-            </label>
-            <select
-              id="rowsPerPage"
-              value={rowsPerPage}
-              onChange={(e) => setRowsPerPage(Number(e.target.value))}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-            >
-              <option value={10}>10</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-              <option value={200}>200</option>
-            </select>
-          </div>
+              <label
+                htmlFor="rowsPerPage"
+                className="block text-sm font-medium"
+              >
+                Rows per page
+              </label>
+              <select
+                id="rowsPerPage"
+                value={rowsPerPage}
+                onChange={(e) => setRowsPerPage(Number(e.target.value))}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              >
+                <option value={10}>10</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+                <option value={200}>200</option>
+              </select>
+            </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default EmiForm;
+export default page;
