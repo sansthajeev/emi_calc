@@ -103,7 +103,7 @@ const EmiForm = () => {
                 <input
                   type="text"
                   id="principal"
-                  className="flex-1 p-2 border border-gray-300"
+                  className="flex-1 p-2 border border-gray-900"
                   value={principal || ""}
                   onChange={(e) => setPrincipal(Number(e.target.value))}
                   required
@@ -121,7 +121,7 @@ const EmiForm = () => {
                   id="rate"
                   value={rate || ""}
                   onChange={(e) => setRate(Number(e.target.value))}
-                  className="flex-1 p-2 border border-gray-300"
+                  className="flex-1 p-2 border border-gray-900"
                   required
                 />
               </div>
@@ -133,7 +133,7 @@ const EmiForm = () => {
                 id="tenure"
                 value={tenure || ""}
                 onChange={(e) => setTenure(Number(e.target.value))}
-                className="w-full p-2 border border-gray-300"
+                className="w-full p-2 border border-gray-900"
                 required
               />
               <div className="mt-2">
@@ -150,7 +150,7 @@ const EmiForm = () => {
                           | "yearly"
                       )
                     }
-                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                    className="p-3 mt-1 block w-full border-gray-900 rounded-md shadow-sm"
                     required
                   >
                     <option value="monthly">Monthly</option>
@@ -175,13 +175,13 @@ const EmiForm = () => {
         <div className="flex flex-col items-center">
           <div className="text-center mb-4">
             <p className="text-gray-700">Loan EMI</p>
-            <p className="text-2xl font-bold">
+            <p className="text-2xl text-gray-900 font-bold">
               NPR {emi !== null ? emi.toFixed(2) : 0}
             </p>
           </div>
           <div className="text-center mb-4">
             <div className="mt-4">
-              <h3 className="text-xl font-bold mb-2">EMI Breakdown</h3>
+              <h3 className="text-xl text-green-900 font-bold mb-2">EMI Breakdown</h3>
               <Pie data={pieData} />
             </div>
           </div>
@@ -215,7 +215,7 @@ const EmiForm = () => {
               {displayedSchedule?.map((row, index) => (
                 <tr
                   key={row.month}
-                  className={index % 2 === 0 ? "bg-gray-100" : ""}
+                  className={index % 2 === 0 ? "bg-gray-900" : ""}
                 >
                   <td>{row.month}</td>
                   <td>{row.principalPayment.toFixed(2)}</td>
@@ -232,7 +232,7 @@ const EmiForm = () => {
         <div className="mt-4 flex justify-between">
           <button
             onClick={handlePreviousPage}
-            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 disabled:opacity-50"
+            className="px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-300 disabled:opacity-50"
             disabled={currentPage === 1}
           >
             Previous
@@ -242,7 +242,7 @@ const EmiForm = () => {
           </p>
           <button
             onClick={handleNextPage}
-            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 disabled:opacity-50"
+            className="px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-300 disabled:opacity-50"
             disabled={currentPage === totalPages}
           >
             Next
@@ -256,7 +256,7 @@ const EmiForm = () => {
               id="rowsPerPage"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(Number(e.target.value))}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              className="mt-1 block w-full border-gray-900 rounded-md shadow-sm"
             >
               <option value={10}>10</option>
               <option value={50}>50</option>
