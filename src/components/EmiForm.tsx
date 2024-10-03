@@ -88,7 +88,7 @@ const EmiForm = () => {
 
   return (
     <div className="p-10 mx-auto bg-white p-8 shadow-md">
-      <h1 className="text-3xl font-bold text-blue-700 mb-4">EMI Calculator</h1>
+      <h1 className="text-3xl font-bold text-green-700 mb-4">EMI Calculator</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -103,7 +103,7 @@ const EmiForm = () => {
                 <input
                   type="text"
                   id="principal"
-                  className="flex-1 p-2 border border-gray-900"
+                  className="flex-1 p-2 border border-green-900 text-green-900"
                   value={principal || ""}
                   onChange={(e) => setPrincipal(Number(e.target.value))}
                   required
@@ -121,7 +121,7 @@ const EmiForm = () => {
                   id="rate"
                   value={rate || ""}
                   onChange={(e) => setRate(Number(e.target.value))}
-                  className="flex-1 p-2 border border-gray-900"
+                  className="flex-1 p-2 border border-green-900 text-green-900"
                   required
                 />
               </div>
@@ -133,7 +133,7 @@ const EmiForm = () => {
                 id="tenure"
                 value={tenure || ""}
                 onChange={(e) => setTenure(Number(e.target.value))}
-                className="w-full p-2 border border-gray-900"
+                className="w-full p-2 border border-green-900 text-green-900"
                 required
               />
               <div className="mt-2">
@@ -150,13 +150,21 @@ const EmiForm = () => {
                           | "yearly"
                       )
                     }
-                    className="p-3 mt-1 block w-full border-gray-900 rounded-md shadow-sm"
+                    className="p-3 mt-1 block w-full border-green-900 text-green-900 rounded-md shadow-sm"
                     required
                   >
-                    <option value="monthly">Monthly</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="semi-annual">Semi-Annual</option>
-                    <option value="yearly">Yearly</option>
+                    <option className="text-green-700" value="monthly">
+                      Monthly
+                    </option>
+                    <option className="text-green-700" value="quarterly">
+                      Quarterly
+                    </option>
+                    <option className="text-green-700" value="semi-annual">
+                      Semi-Annual
+                    </option>
+                    <option className="text-green-700" value="yearly">
+                      Yearly
+                    </option>
                   </select>
                 </label>
               </div>
@@ -166,7 +174,7 @@ const EmiForm = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+            className="w-full border bg-green-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
           >
             Calculate EMI
           </button>
@@ -181,7 +189,9 @@ const EmiForm = () => {
           </div>
           <div className="text-center mb-4">
             <div className="mt-4">
-              <h3 className="text-xl text-green-900 font-bold mb-2">EMI Breakdown</h3>
+              <h3 className="text-xl text-green-900 font-bold mb-2">
+                EMI Breakdown
+              </h3>
               <Pie data={pieData} />
             </div>
           </div>
@@ -189,8 +199,8 @@ const EmiForm = () => {
       </div>
       <h2 className="text-xl font-bold text-gray-700 mt-8 mb-4">
         Monthly breakdown of EMI in{" "}
-        <span className="font-bold text-blue-700">Principal</span> and{" "}
-        <span className="font-bold text-blue-700">Interest</span> components
+        <span className="font-bold text-green-700">Principal</span> and{" "}
+        <span className="font-bold text-green-700">Interest</span> components
       </h2>
       <div className="overflow-x-auto">
         {emi !== null ? (
@@ -215,7 +225,9 @@ const EmiForm = () => {
               {displayedSchedule?.map((row, index) => (
                 <tr
                   key={row.month}
-                  className={index % 2 === 0 ? "bg-gray-900" : ""}
+                  className={
+                    index % 2 === 0 ? " gap-y-2 border text-green-900 p-3 h-auto mx-auto text-center" : "p-3 h-auto border mx-auto text-center"
+                  }
                 >
                   <td>{row.month}</td>
                   <td>{row.principalPayment.toFixed(2)}</td>
@@ -226,13 +238,15 @@ const EmiForm = () => {
             </tbody>
           </table>
         ) : (
-          <>No Records to Display</>
+          <>
+            <p className="text-green-900">No Records to Display</p>
+          </>
         )}
         {/* Pagination controls */}
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4 flex justify-between bg-slate-400 mx-auto">
           <button
             onClick={handlePreviousPage}
-            className="px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-300 disabled:opacity-50"
+            className="px-4 py-2 rounded-md hover:bg-gray-300 text-gray-950 disabled:opacity-50"
             disabled={currentPage === 1}
           >
             Previous
@@ -242,7 +256,7 @@ const EmiForm = () => {
           </p>
           <button
             onClick={handleNextPage}
-            className="px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-300 disabled:opacity-50"
+            className="px-4 py-2 rounded-md hover:bg-gray-300 text-gray-950 disabled:opacity-50"
             disabled={currentPage === totalPages}
           >
             Next
@@ -256,7 +270,7 @@ const EmiForm = () => {
               id="rowsPerPage"
               value={rowsPerPage}
               onChange={(e) => setRowsPerPage(Number(e.target.value))}
-              className="mt-1 block w-full border-gray-900 rounded-md shadow-sm"
+              className="mt-1 block w-full border-green-900 rounded-md shadow-sm"
             >
               <option value={10}>10</option>
               <option value={50}>50</option>
